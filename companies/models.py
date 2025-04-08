@@ -4,7 +4,7 @@ from account.models import userModel
 # Create your models here.
 USER_ROLE = (
     ('HR', 'HR'),
-    ('admin', 'admin'),
+    ('ADMIN', 'admin'),
 )
 
 
@@ -26,6 +26,7 @@ class companyModel(models.Model):
         return self.company_name
 
 
+#to do : add users in company 
 class companyUser(models.Model):
     company = models.ForeignKey(companyModel, on_delete=models.CASCADE, related_name='members')
     user = models.ForeignKey(userModel, on_delete=models.CASCADE)
