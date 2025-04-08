@@ -1,9 +1,9 @@
 from rest_framework.serializers import ModelSerializer
-from account.models import userModel
+from account.models import UserModel
 
-class userSerializer(ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
-        model = userModel
+        model = UserModel
         fields = ['id', 'first_name', 'last_name', 'api_key', 'email','user_img','owned_companies','posted_jobs',
                   'dob', 'password', 'joined_at', 'last_modified', 'user_type', 'bio', 'linkedin_url']
         extra_kwargs = {
@@ -14,7 +14,7 @@ class userSerializer(ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop('password')
-        user = userModel(**validated_data)
+        user = UserModel(**validated_data)
         user.set_password(password)
         user.save()
         return user

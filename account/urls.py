@@ -4,7 +4,7 @@ from account import views
 from django.urls import path, include
 
 router = DefaultRouter()
-router.register('',views.userAPI, basename='user')
+router.register('',views.UserAPI, basename='user')
 
 
 urlpatterns = [

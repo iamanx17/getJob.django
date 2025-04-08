@@ -1,5 +1,5 @@
 from rest_framework.permissions import BasePermission
-from companies.models import companyUser, companyModel
+from companies.models import CompanyUserModel, CompanyModel
 
 class isCompanyMember(BasePermission):
 
@@ -10,11 +10,11 @@ class isCompanyMember(BasePermission):
             if not company_name:
                 return False
             
-            company = companyModel.objects.get(company_name = company_name)
+            company = CompanyModel.objects.get(company_name = company_name)
             
-            return user.is_authenticated and companyUser.objects.filter(user = user,company=company).exists()
+            return user.is_authenticated and CompanyUserModel.objects.filter(user = user,company=company).exists()
         
-        except companyModel.DoesNotExist as err:
+        except CompanyModel.DoesNotExist as err:
             print('invalid company does not exist')
             return False
         

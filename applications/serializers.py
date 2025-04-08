@@ -1,10 +1,10 @@
 from rest_framework.serializers import ModelSerializer
-from applications.models import applicationModel
+from applications.models import ApplicationModel
 
 
-class applicationSerializer(ModelSerializer):
+class ApplicationSerializer(ModelSerializer):
     class Meta:
-        model = applicationModel
+        model = ApplicationModel
         fields = ['id', 'job', 'applicant','cover_letter', 'applied_at', 'status', 'resume']
         extra_kwargs={
             'applied_at': {'read_only': True},

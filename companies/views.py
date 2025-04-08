@@ -1,15 +1,15 @@
 from rest_framework.viewsets import ModelViewSet
-from companies.serializers import comapnySerializer, companyUserSerializer
-from companies.models import companyModel, companyUser
+from companies.serializers import ComapnySerializer, CompanyUserSerializer
+from companies.models import CompanyModel, CompanyUserModel
 from rest_framework.permissions import IsAuthenticated
 from companies.auth import isRecuriter
 # Create your views here.
 
 
 
-class companyAPI(ModelViewSet):
-    queryset = companyModel.objects.all()
-    serializer_class = comapnySerializer
+class CompanyAPI(ModelViewSet):
+    queryset = CompanyModel.objects.all()
+    serializer_class = ComapnySerializer
 
     def get_permissions(self):
         if self.action in ['list']:
@@ -21,6 +21,6 @@ class companyAPI(ModelViewSet):
         serializer.save(added_by = self.request.user)
     
 
-class companyUserAPI(ModelViewSet):
-    queryset = companyUser.objects.all()
-    serializer_class = companyUserSerializer
+class CompanyUserAPI(ModelViewSet):
+    queryset = CompanyUserModel.objects.all()
+    serializer_class = CompanyUserSerializer

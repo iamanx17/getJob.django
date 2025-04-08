@@ -1,6 +1,6 @@
 from django.db import models
-from account.models import userModel
-from job.models import jobModel
+from account.models import UserModel
+from job.models import JobModel
 # Create your models here.
 
 STATUS = (
@@ -11,9 +11,9 @@ STATUS = (
 
 
 
-class applicationModel(models.Model):
-    job = models.ForeignKey(jobModel, on_delete=models.CASCADE, related_name='applications')
-    applicant = models.ForeignKey(userModel, on_delete=models.CASCADE)
+class ApplicationModel(models.Model):
+    job = models.ForeignKey(JobModel, on_delete=models.CASCADE, related_name='applications')
+    applicant = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     cover_letter = models.TextField(null=True, blank=True)
     resume = models.FileField(upload_to='applications/', blank=True, null=True)
     status = models.CharField(choices=STATUS, default='pending')

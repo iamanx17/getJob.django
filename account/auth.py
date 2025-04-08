@@ -1,7 +1,7 @@
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from account.models import userModel
+from account.models import UserModel
 
 
 
@@ -21,8 +21,8 @@ class apiKeyJwtAuthentiation(BaseAuthentication):
                 raise AuthenticationFailed('Invalid jwt token')
 
         try:
-            user = userModel.objects.get(api_key = authorization)
+            user = UserModel.objects.get(api_key = authorization)
             return (user, None)
         
-        except userModel.DoesNotExist as err:
+        except UserModel.DoesNotExist as err:
             raise AuthenticationFailed('Invalid API key')

@@ -1,6 +1,6 @@
 from django.db import models
-from account.models import userModel
-from companies.models import companyModel, companyUser
+from account.models import UserModel
+from companies.models import CompanyModel
 
 # Create your models here.
 
@@ -16,7 +16,7 @@ LOCATION_TYPE = (
     ('RE', 'remote')
 )
 
-class jobModel(models.Model):
+class JobModel(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     location = models.TextField()
@@ -27,8 +27,8 @@ class jobModel(models.Model):
     min_salary = models.PositiveIntegerField(null=True, blank=True)
     max_salary = models.PositiveIntegerField(null=True, blank=True)
     
-    company = models.ForeignKey(companyModel, on_delete=models.CASCADE, related_name='company_posted_jobs')
-    posted_by = models.ForeignKey(userModel, on_delete=models.CASCADE, related_name='posted_jobs')
+    company = models.ForeignKey(CompanyModel, on_delete=models.CASCADE, related_name='company_posted_jobs')
+    posted_by = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='posted_jobs')
 
     def __str__(self):
         return self.title + '' + self.job_type 

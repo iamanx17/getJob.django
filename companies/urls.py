@@ -4,8 +4,8 @@ from companies import views
 
 
 router = DefaultRouter()
-router.register('', views.companyAPI)
-router.register('addcompuser', views.companyUserAPI)
+router.register('', views.CompanyAPI)
+router.register('addcompuser', views.CompanyUserAPI)
 
 urlpatterns = [
     path('', include(router.urls))

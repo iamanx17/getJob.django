@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import userModel
+from account.models import UserModel
 
 # Create your models here.
 USER_ROLE = (
@@ -8,7 +8,7 @@ USER_ROLE = (
 )
 
 
-class companyModel(models.Model):
+class CompanyModel(models.Model):
     company_name = models.CharField(unique=True, max_length=30)
     logo = models.ImageField(upload_to='comapny_logo/', blank=True, null=True)
     description = models.TextField()
@@ -18,7 +18,7 @@ class companyModel(models.Model):
     email = models.EmailField(unique=True)
     linkedin_url = models.URLField(null=True, blank=True)
 
-    added_by = models.ForeignKey(userModel, on_delete=models.CASCADE, related_name='owned_companies')
+    added_by = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='owned_companies')
     joined_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
@@ -27,9 +27,9 @@ class companyModel(models.Model):
 
 
 #to do : add users in company 
-class companyUser(models.Model):
-    company = models.ForeignKey(companyModel, on_delete=models.CASCADE, related_name='members')
-    user = models.ForeignKey(userModel, on_delete=models.CASCADE)
+class CompanyUserModel(models.Model):
+    company = models.ForeignKey(CompanyModel, on_delete=models.CASCADE, related_name='members')
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     role = models.CharField(choices=USER_ROLE, default='HR')
 
 

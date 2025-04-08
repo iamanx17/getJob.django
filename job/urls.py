@@ -3,7 +3,7 @@ from django.urls import path, include
 from job import views
 
 router = DefaultRouter()
-router.register('', views.jobAPI)
+router.register('', views.JobAPI)
 
 
 urlpatterns = [

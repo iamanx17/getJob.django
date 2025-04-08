@@ -1,7 +1,7 @@
 from django.contrib import admin
-from applications.models import applicationModel
+from applications.models import ApplicationModel
 
 # Register your models here.
 
 
-admin.site.register(applicationModel)
+admin.site.register(ApplicationModel)

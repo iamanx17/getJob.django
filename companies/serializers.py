@@ -1,11 +1,11 @@
 from rest_framework.serializers import ModelSerializer
-from companies.models import companyModel, companyUser
-from account.models import userModel
+from companies.models import CompanyModel, CompanyUserModel
+from account.models import UserModel
 
 
-class comapnySerializer(ModelSerializer):
+class ComapnySerializer(ModelSerializer):
     class Meta:
-        model = companyModel
+        model = CompanyModel
         fields = ['id', 'company_name', 'description', 'address', 'pin_code','company_posted_jobs',
                   'website', 'email', 'added_by', 'joined_at', 'last_modified', 'linkedin_url']
         extra_kwargs = {
@@ -21,14 +21,14 @@ class comapnySerializer(ModelSerializer):
 
             user_id = data.get('added_by')
             if user_id:
-                user = userModel.objects.get(id = user_id)
+                user = UserModel.objects.get(id = user_id)
                 data['added_by'] = user.email
-        except userModel.DoesNotExist as err:
+        except UserModel.DoesNotExist as err:
             print('error occured: user not found', err)
 
         return data
 
-class companyUserSerializer(ModelSerializer):
+class CompanyUserSerializer(ModelSerializer):
     class Meta:
-        model = companyUser
+        model = CompanyUserModel
         fields = ['id', 'company', 'user', 'role']

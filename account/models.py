@@ -5,15 +5,13 @@ import uuid
 # Create your models here.
 
 
-class customUser(BaseUserManager):
+class CustomUser(BaseUserManager):
 
     def create_user(self, email, password, **extra_fields):
-
         if not email:
             raise ValueError('Email is a required field')
 
         email = self.normalize_email(email=email)
-
         user = self.model(email=email, password=password, **extra_fields)
         user.set_password(password)
         user.save()
@@ -40,8 +38,7 @@ USER_TYPE_CHOICES = (
 def generate_api_key():
     return str(uuid.uuid4())
 
-class userModel(AbstractBaseUser, PermissionsMixin):
-
+class UserModel(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(unique=True)
@@ -60,7 +57,7 @@ class userModel(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=True)
 
-    objects = customUser()
+    objects = CustomUser()
 
     USERNAME_FIELD = 'email'
 
