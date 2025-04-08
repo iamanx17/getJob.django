@@ -11,7 +11,8 @@ class ComapnySerializer(ModelSerializer):
         extra_kwargs = {
             'added_by': {'read_only': True},
             'joined_at': {'read_only': True},
-            'last_modified':{'read_only': True}
+            'last_modified':{'read_only': True},
+            "company_posted_jobs": {'read_only': True}
         }
 
     def to_representation(self, instance):

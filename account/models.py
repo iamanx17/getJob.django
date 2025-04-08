@@ -44,7 +44,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     dob = models.DateField(null=True, blank=True)
     user_img = models.ImageField(upload_to='profile_img/',blank=True, null=True)
-    user_type = models.CharField(choices=USER_TYPE_CHOICES, default='Applicant')
+    user_type = models.CharField(choices=USER_TYPE_CHOICES, default='applicant')
     api_key = models.CharField(default=generate_api_key, unique=True)
     resume = models.FileField(upload_to='resumes', null=True, blank=True)
     linkedin_url = models.URLField(null=True, blank=True)

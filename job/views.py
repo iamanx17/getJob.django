@@ -13,7 +13,6 @@ from job.serializers import JobSerializer
 class JobAPI(ModelViewSet):
     queryset = JobModel.objects.all()
     serializer_class = JobSerializer
-    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         try:
@@ -32,7 +31,7 @@ class JobAPI(ModelViewSet):
             return Response({'error': 'Invalid company name'}, status=status.HTTP_400_BAD_REQUEST)
     
     def get_permissions(self):
-        if self.action in ['create']:
-            return [IsAuthenticated(), isCompanyMember()]
-        return [IsAuthenticated()]
+        if self.action in ['list']:
+            return [IsAuthenticated()]
+        return [IsAuthenticated(), isCompanyMember()]
         

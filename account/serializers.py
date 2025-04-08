@@ -9,7 +9,9 @@ class UserSerializer(ModelSerializer):
         extra_kwargs = {
             'joined_at': {'read_only': True},
             'last_modified': {'read_only': True},
-            'api_key': {'read_only': True}
+            'api_key': {'read_only': True},
+            'owned_companies': {'read_only': True},
+            'posted_jobs':{'read_only': True}
         }
 
     def create(self, validated_data):
