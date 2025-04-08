@@ -15,3 +15,14 @@ class ApplicationAPI(ModelViewSet):
             return [IsAuthenticated(), isApplicant()]
         
         return [IsAuthenticated()]
+    
+    def perform_create(self, serializer):
+        serializer.save(applicant = self.request.user)
+    
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return ApplicationModel.objects.filter(applicant = self.request.user)
+        
+        return ApplicationModel.objects.none()
+
+        
